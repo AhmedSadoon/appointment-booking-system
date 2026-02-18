@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('duration')->nullable()->comment('المدة بالدقائق'); // يفضل integer للحسابات
+            $table->integer('duration')->comment('المدة بالدقائق'); // يفضل integer للحسابات
             $table->decimal('price',10,2);
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->tinyInteger('active')->default(1)->comment('فعالة 1 غير فعالة 0');
+            $table->foreignId('provider_id')->constrained('users')->onDelete('cascade');
+            $table->integer('buffer_time')->default(0); // بالدقائق
+
             $table->timestamps();
         });
     }

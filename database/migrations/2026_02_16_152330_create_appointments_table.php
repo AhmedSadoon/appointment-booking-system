@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // هذا هو العميل
+            $table->foreignId('client_id')->constrained('users'); // هذا هو العميل
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->enum('status',['pending','confirmed','cancelled'])->default('pending');
